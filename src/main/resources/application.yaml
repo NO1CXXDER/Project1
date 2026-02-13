@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: Project1
+  datasource:
+    url: jdbc:mysql://localhost:3306/kangdb
+    username: root
+    password: '1234'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show-sql: true
+        format_sql: true
+
+
