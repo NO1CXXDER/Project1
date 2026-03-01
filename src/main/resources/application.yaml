@@ -1,17 +1,22 @@
+server:
+  port: 8080
 spring:
   application:
     name: Project1
   datasource:
     url: jdbc:mysql://localhost:3306/kangdb
     username: root
-    password: '1234'
+    password: ${MYSQL_ROOT_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         show-sql: true
         format_sql: true
 
-
+# JWT 관련 설정 추가
+jwt:
+  secret: ${JWT_SECRET_KEY} # 환경 변수로 JWT 비밀 키 설정
+  expiration-time: 10800000

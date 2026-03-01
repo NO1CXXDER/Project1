@@ -6,61 +6,35 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
+public class User { // 1. implements UserDetails 제거 (순수 엔티티화)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique=true)
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String password;
+
+    // 2. 권한 필드 추가 (CustomUserDetails에서 이 값을 사용하게 됩니다)
+    // 보통 "USER", "ADMIN" 등의 문자열이 저장됩니다.
+    @Column(nullable = false)
+    private String role;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
-
-    @Override
-    public String getUsername() {
-        return email; //로그인 시 아이디(username)으로 email을 사용하도록 설정
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true; //계정 만료 여부(true : 만료안됨)
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;//계정 잠금 여부((true: 만료 안 됨))
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true; //비밀 번호 만료 여부(true: 만료 안 됨)
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;//계정 활성화 여부( true: 활성)
-    }
 }
