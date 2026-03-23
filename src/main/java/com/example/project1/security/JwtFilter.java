@@ -38,7 +38,7 @@ public class JwtFilter extends OncePerRequestFilter {
             if (userDetails != null){
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                SecurityContextHolder.getContext().setAuthentication(authentication); //Securitycontextholder는 인증 정보를 저장하는 곳이다.
 
             }
         }

@@ -4,6 +4,7 @@ import com.example.project1.security.ExceptionFilter;
 import com.example.project1.security.JwtAccessDeniedHandler;
 import com.example.project1.security.JwtAuthenticationEntryPoint;
 import com.example.project1.security.JwtFilter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
-@Configuration
+@Configuration// 스프링 컨테이너에 의해 관리되는 설정 클래스임을 나
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -66,4 +67,6 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return source;
     }
+
+
 }

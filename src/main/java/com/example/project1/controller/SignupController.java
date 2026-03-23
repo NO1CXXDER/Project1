@@ -21,7 +21,7 @@ public class SignupController {
     @PostMapping("/signup")
     public String processSignup(SignupRequestDto signupRequestDto) {
         userService.processSignup(signupRequestDto);
-        return "redirect:/login";
+        return "/login";
     }
 
 
